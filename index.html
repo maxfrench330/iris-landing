@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:    #080E1C;
+      --ivory:   #EDE6D3;
+      --ivory-2: rgba(237,230,211,0.72);
+      --ivory-3: rgba(237,230,211,0.48);
+      --gold:    #C9A84C;
+      --emerald: #1A6B4A;
+      --rule:    rgba(237,230,211,0.14);
+      --serif:   'Canela', 'Cormorant Garamond', Didot, 'Didot LT STD', 'Hoefler Text', Georgia, serif;
+      --cta-grad: linear-gradient(90deg, #1A6B4A 0%, #C9A84C 100%);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--ivory);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav — smart hide on scroll ─────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 56px;
+      transition: transform 0.42s cubic-bezier(0.4,0,0.2,1),
+                  opacity  0.42s cubic-bezier(0.4,0,0.2,1);
+    }
+    nav.nav--hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .nav-mark {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+
+    .nav-apply {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ivory-2);
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(201,168,76,0.35);
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .nav-apply:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── Hero ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 100px;
+    }
+
+    .hero-logo {
+      width: 156px;
+      height: 156px;
+      margin-bottom: 52px;
+      filter:
+        drop-shadow(0 0 48px rgba(26,107,74,0.32))
+        drop-shadow(0 0 96px rgba(26,107,74,0.14));
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(80px, 14vw, 136px);
+      font-weight: 400;
+      letter-spacing: 0.38em;
+      text-indent: 0.38em;
+      line-height: 1;
+      color: var(--ivory);
+      margin-bottom: 26px;
+    }
+
+    .hero-tag {
+      font-family: var(--serif);
+      font-size: clamp(16px, 2vw, 20px);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--ivory-2);
+      margin-bottom: 64px;
+    }
+
+    .hero-rule {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      margin: 0 auto 64px;
+    }
+
+    /* gradient pill CTA */
+    .cta {
+      display: inline-block;
+      font-family: var(--serif);
+      font-size: 12px;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: 0.26em;
+      text-indent: 0.26em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+      background: var(--cta-grad);
+      border: none;
+      border-radius: 100px;
+      padding: 20px 56px;
+      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 4px 32px rgba(26,107,74,0.30), 0 2px 10px rgba(0,0,0,0.35);
+    }
+    .cta:hover  { opacity: 0.88; transform: translateY(-2px); }
+    .cta:active { opacity: 1;    transform: translateY(0); }
+    .cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    /* ── Features ───────────────────────────────────── */
+    .features {
+      border-top: 1px solid var(--rule);
+      padding: 100px 56px 112px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .features-eyebrow {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .feat {
+      background: var(--navy);
+      padding: 52px 44px;
+      transition: background 0.25s;
+    }
+    .feat:hover { background: #0c1424; }
+
+    .feat-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ivory);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .feat-body {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.80;
+      color: var(--ivory-2);
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 40px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--ivory-3);
+      text-transform: uppercase;
+    }
+
+    .footer-links { display: flex; gap: 32px; list-style: none; }
+    .footer-links a {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--ivory-3);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--ivory-2); }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 860px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      nav { padding: 24px 24px; }
+      .features { padding: 72px 24px 80px; }
+      .features-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <a href="#" class="nav-mark">Iris</a>
+  <a href="#apply" class="nav-apply">Apply</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <svg class="hero-logo" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="iris-body" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="#000308"/>
+        <stop offset="15%"  stop-color="#001040"/>
+        <stop offset="37%"  stop-color="#001878"/>
+        <stop offset="44%"  stop-color="#002B40"/>
+        <stop offset="51%"  stop-color="#0D4D32"/>
+        <stop offset="60%"  stop-color="#1A6B4A"/>
+        <stop offset="72%"  stop-color="#2E4A1C"/>
+        <stop offset="86%"  stop-color="#6B3E00"/>
+        <stop offset="100%" stop-color="#C9A84C"/>
+      </radialGradient>
+      <radialGradient id="iris-pupil" cx="91.84" cy="89.12" r="12.92" gradientUnits="userSpaceOnUse">
+        <stop offset="0%"   stop-color="#06080F"/>
+        <stop offset="100%" stop-color="#000000"/>
+      </radialGradient>
+      <radialGradient id="iris-catch" cx="85" cy="85" r="11" gradientUnits="userSpaceOnUse">
+        <stop offset="0%"   stop-color="white" stop-opacity="0.88"/>
+        <stop offset="100%" stop-color="white" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="iris-arc" x1="16" y1="16" x2="184" y2="184" gradientUnits="userSpaceOnUse">
+        <stop offset="0%"   stop-color="white" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="white" stop-opacity="0"/>
+      </linearGradient>
+      <clipPath id="iris-clip"><circle cx="100" cy="100" r="100"/></clipPath>
+    </defs>
+    <g clip-path="url(#iris-clip)">
+      <circle cx="100" cy="100" r="100" fill="url(#iris-body)"/>
+      <circle cx="100" cy="100" r="46" fill="none" stroke="white" stroke-opacity="0.035" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="59" fill="none" stroke="white" stroke-opacity="0.035" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="72" fill="none" stroke="white" stroke-opacity="0.035" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-opacity="0.035" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="34" fill="url(#iris-pupil)"/>
+      <circle cx="85"  cy="85"  r="11" fill="url(#iris-catch)"/>
+      <path d="M 17.76,117.46 A 84,84 0 0,1 124.56,19.67"
+            fill="none" stroke="url(#iris-arc)" stroke-width="4.4" stroke-linecap="round"/>
+    </g>
+  </svg>
+
+  <h1 class="hero-name">Iris</h1>
+  <p class="hero-tag">See Authenticity.</p>
+  <div class="hero-rule"></div>
+  <a href="#" class="cta" id="apply">Apply for Membership</a>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <p class="features-eyebrow">Why Iris</p>
+  <div class="features-grid">
+    <div class="feat">
+      <h3 class="feat-title">Closed Network</h3>
+      <p class="feat-body">Iris is not open to the public. Members apply and are reviewed by a human. No mass sign-ups, anonymous accounts, or bots.</p>
+    </div>
+    <div class="feat">
+      <h3 class="feat-title">No Links In Bio</h3>
+      <p class="feat-body">Posts live inside Iris exclusively. No external links, referral schemes, or redirecting your attention anywhere else.</p>
+    </div>
+    <div class="feat">
+      <h3 class="feat-title">Zero Ads. Ever.</h3>
+      <p class="feat-body">Iris is member-supported. Devoid of advertisement campaigns, sponsored posts emulating real opinions, and brand deals dressed up as content.</p>
+    </div>
+    <div class="feat">
+      <h3 class="feat-title">No Fake Influencers</h3>
+      <p class="feat-body">Follower counts are private. Paid promotions are banned. Just people with something real to say.</p>
+    </div>
+    <div class="feat">
+      <h3 class="feat-title">AI Content Policy</h3>
+      <p class="feat-body">Moderators review every flag and take down AI-generated posts. Iris celebrates the irreplaceable beauty of human creativity.</p>
+    </div>
+    <div class="feat">
+      <h3 class="feat-title">Privacy By Default</h3>
+      <p class="feat-body">No data selling, or algorithmic exploitation. What happens on Iris stays inside Iris.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span class="footer-copy">© 2026 Iris</span>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+</footer>
+
+<script>
+  (function () {
+    const nav = document.getElementById('nav');
+    let lastY = 0;
+    let ticking = false;
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          const y = window.scrollY;
+          if (y <= 10) {
+            // Always show at the very top
+            nav.classList.remove('nav--hidden');
+          } else if (y > lastY) {
+            // Scrolling down — hide
+            nav.classList.add('nav--hidden');
+          } else {
+            // Scrolling up — show
+            nav.classList.remove('nav--hidden');
+          }
+          lastY = y;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
