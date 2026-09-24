@@ -379,6 +379,7 @@
 <li><strong>Comments.</strong> Any comments you leave on posts, including threaded replies (Iris supports one level of replies beneath a comment).</li>
 <li><strong>Direct messages.</strong> The content of one-to-one, real-time messages you send and receive through Iris's messaging feature.</li>
 <li><strong>Communications with us.</strong> Anything you send us directly, such as a support request or a question about your account or this policy.</li>
+<li><strong>Contact and feedback messages.</strong> If you write to us through the contact form on our website or send feedback from inside the app, we collect your name and email address (for in-app feedback, your username and account email) and the message you write.</li>
 </ul>
 
 <h3>Information we collect automatically</h3>
@@ -387,8 +388,9 @@
 
 <ul>
 <li><strong>Device information</strong>, such as device type, operating system and version, and app version.</li>
-<li><strong>Usage and analytics data</strong>, such as which screens or features you use, session length, and general interaction patterns, which help us understand how the Service is used and where it needs improvement.</li>
-<li><strong>Crash logs and diagnostic data</strong>, generated automatically when the app encounters an error, which help us identify and fix bugs and stability issues.</li>
+<li><strong>Push notification token.</strong> If you allow notifications, your device gives Apple a token that we store with your account so we can notify you, for example about an application decision or a notice that content of yours was removed. We store the token and whether it belongs to a development or production build. You can turn notifications off in Iris Settings or in iOS Settings, and we delete the token when you delete your account.</li>
+<li><strong>Posts you have viewed.</strong> We record which posts you have seen so that the feed does not show you the same posts repeatedly.</li>
+<li><strong>Crash and diagnostic data.</strong> If you have chosen to share diagnostics with app developers in your iOS settings, Apple may provide us with anonymized crash reports, which help us identify and fix bugs and stability issues.</li>
 </ul>
 
 <p>We collect this category of information in the ordinary, limited way typical of a mobile application — we do not use it to build advertising profiles, and, as described in Section 4, we do not use it for advertising at all, because Iris does not carry advertising.</p>
@@ -401,7 +403,7 @@
 <li><strong>Likes</strong> you place on posts.</li>
 <li><strong>Saves and bookmarks.</strong> Posts you save for later. Saves are private: no other member, including the author of the saved post, can see what you have saved or that you have saved it. We treat this as one of the more sensitive categories of activity data you generate on Iris, precisely because it reflects your personal interests without any expectation of visibility to anyone else.</li>
 <li><strong>Follows and followers.</strong> Iris currently makes follow and follower relationships visible to other members. If this changes in the future — for example, if we introduce an option to make this private — we will update this policy accordingly.</li>
-<li><strong>Reports you submit</strong>, including reports flagging a post as spam, harassment, inappropriate content, "Report as AI-generated," or another concern described in free text, and any blocks you place on other members.</li>
+<li><strong>Reports you submit</strong>, including reports flagging a post as spam, harassment, inappropriate content, "Report as AI-generated," or "something else," and any blocks you place on other members.</li>
 </ul>
 
 <h2 id="how-we-use-information">3. How We Use Your Information</h2>
@@ -423,9 +425,10 @@
 <ul>
 <li><strong>Automatic AI-text scanning.</strong> Every post's caption or note text is automatically analyzed on creation by <strong>Pangram</strong>, a third-party AI-text-detection service, to assess whether the text appears to be AI-generated. This automatic scan never results in a post being removed or labeled on its own, and the author of the post is never notified that their post was scanned or flagged. Instead, results from this scan are routed to a private queue for review by a human moderator, who makes any final determination.</li>
 <li><strong>On-demand AI-image assessment.</strong> If a member taps "Report as AI-generated" on a specific post, that action triggers an on-demand analysis of the image itself using an Anthropic Claude AI model, and generates a report for review by a human moderator. This analysis only occurs when a member actively initiates it by reporting a specific post — it is not run automatically on every image the way the text scan is.</li>
-<li><strong>Member reports.</strong> Members can report posts for spam, harassment, inappropriate content, or other concerns described in free text. We use the content of these reports, together with the reported post and any relevant account history, to evaluate the report.</li>
+<li><strong>Member reports.</strong> Members can report posts for spam, harassment, inappropriate content, AI-generated content, or "something else." We use the content of these reports, together with the reported post and any relevant account history, to evaluate the report.</li>
 <li><strong>Human review before enforcement.</strong> Regardless of whether a flag originates from an automated scan (Pangram), an on-demand AI assessment (Anthropic), or a member report, we use this information to route the matter to a human reviewer. No automated system on Iris takes enforcement action — such as removing content or restricting an account — on its own; a person makes that decision.</li>
-<li><strong>Blocking.</strong> We use information about blocks that members place on other members to attempt to limit interaction between the blocking member and the blocked member. Iris's block feature exists and is functional today, but enforcement of blocks is still being extended across every surface of the app, so you should treat blocking as a meaningful but not yet fully comprehensive protection while we continue this work.</li>
+<li><strong>Content notices and disputes.</strong> If a human moderator removes one of your posts, we record the reason, show you a private notice in the app, and send a push notification. You can dispute a removal once; a moderator reviews the dispute and may restore the post.</li>
+<li><strong>Blocking.</strong> We use information about blocks that members place on other members to limit interaction between them. When you block a member, your posts are hidden from each other, you no longer appear in each other's search results, and new messages between you are prevented. Blocking does not yet hide comments, hide profiles reached from comments or follower lists, or remove existing follows. Treat blocking as a meaningful but not yet fully comprehensive protection while we continue this work.</li>
 </ul>
 
 <h3>Security</h3>
@@ -452,6 +455,7 @@
 <li>Your <strong>follows and followers</strong> are currently visible to other members, as described in Section 2.</li>
 <li>Your <strong>direct messages</strong> are shared only with the specific member you are messaging — they are not visible to other members of the Service.</li>
 <li>Your <strong>saves and bookmarks are never shared with or made visible to other members</strong>, including the author of a saved post. This is a deliberate design choice, and we treat it as a privacy commitment, not merely a feature default.</li>
+<li>If you set your account to <strong>private</strong>, your posts are visible only to members whose follow request you have approved. Iris moderators can still see a post that has been reported or flagged for review.</li>
 <li>Applicants who have not yet been approved are not visible to other members at all — because an unapproved account cannot access the feed or appear to other members, application answers, in-progress signup information, and pending status are not shared with the broader membership.</li>
 </ul>
 
@@ -460,9 +464,14 @@
 <p>We rely on a small number of third-party service providers to operate Iris, and we share information with them only as needed for them to perform services on our behalf, under obligations that limit their use of that information to providing those services:</p>
 
 <ul>
-<li><strong>Supabase</strong>, our backend-as-a-service infrastructure provider, hosts our Postgres database, handles account authentication, stores uploaded files (such as photos, videos, and profile photos), and powers real-time messaging. Supabase functions as our data processor and has access to the underlying data needed to provide this infrastructure.</li>
+<li><strong>Supabase</strong>, our backend-as-a-service infrastructure provider, hosts our Postgres database, handles account authentication (including sending account emails such as confirmation and password reset), stores uploaded files (such as photos, videos, and profile photos), and powers real-time messaging. Supabase functions as our data processor and has access to the underlying data needed to provide this infrastructure.</li>
 <li><strong>Anthropic</strong>, whose Claude AI models we use on an on-demand basis to analyze the image in a post when a member taps "Report as AI-generated." Only the specific reported image is sent for this analysis, and it is used to generate a report for human review, not for any other purpose.</li>
 <li><strong>Pangram Labs</strong>, whose AI-text-detection service automatically analyzes the caption or note text of every post at the time it is created, in order to assess whether the text appears AI-generated, as described in Section 3.</li>
+<li><strong>Apple</strong>, whose Apple Push Notification service delivers notifications to your device. Apple receives your device token and the text of each notification.</li>
+<li><strong>Resend</strong>, which delivers emails that Iris sends, for example feedback you send from the app, which is delivered to our inbox through Resend.</li>
+<li><strong>Zoho Mail</strong>, which hosts our contact inbox (contact@join-iris.com), so messages you send us are stored there.</li>
+<li><strong>Web3Forms</strong>, which receives messages submitted through the contact form on join-iris.com and forwards them to our inbox.</li>
+<li><strong>Cloudflare</strong>, which hosts and secures join-iris.com and processes visitors' IP addresses and request logs for that purpose.</li>
 </ul>
 
 <p>We do not sell your personal information to advertisers or any other third party, and Iris does not currently display advertising of any kind within the Service. If that were ever to change, we would update this policy before doing so.</p>
@@ -521,7 +530,7 @@
 
 <h2 id="international-transfers">9. International Data Transfers</h2>
 
-<p>Iris's infrastructure, including the database, authentication systems, and file storage provided through Supabase, and the AI moderation systems provided by Anthropic and Pangram Labs, may store or process information in a country or region other than the one in which you live. If you access the Service from outside the country or region in which our infrastructure or service providers operate, your information may be transferred to, stored in, and processed in that other location.</p>
+<p>Iris's infrastructure, including the database, authentication systems, and file storage provided through Supabase, the AI moderation systems provided by Anthropic and Pangram Labs, and the notification, email, contact-form and website-hosting services provided by Apple, Resend, Zoho, Web3Forms and Cloudflare, may store or process information in a country or region other than the one in which you live. If you access the Service from outside the country or region in which our infrastructure or service providers operate, your information may be transferred to, stored in, and processed in that other location.</p>
 
 <p>Where such transfers occur, we intend to take reasonable steps designed to help ensure that your information continues to receive an appropriate level of protection consistent with this policy and applicable law, such as relying on our infrastructure and service providers' own contractual and technical safeguards. Iris Social will update this section with the specific data transfer mechanisms it relies on if and when they become applicable.</p>
 
